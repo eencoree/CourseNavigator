@@ -1,0 +1,1 @@
+SELECT * FROM course WHERE end_date IS NOT NULL;
