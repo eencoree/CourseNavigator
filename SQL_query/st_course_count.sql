@@ -1,4 +1,5 @@
-SELECT course.title, COUNT(student_course.student_id) AS student_count
-FROM course
-LEFT JOIN student_course ON course.id_course = student_course.course_id
-GROUP BY course.title;
+SELECT COUNT(DISTINCT user.id_user) AS student_count
+FROM user
+JOIN student_course ON user.id_user = student_course.student_id
+JOIN course ON student_course.course_id = course.id_course
+WHERE course.title = 'Название курса';

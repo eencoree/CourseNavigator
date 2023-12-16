@@ -1,5 +1,5 @@
-SELECT step.title, step.lesson
+SELECT step.*
 FROM step
 JOIN content ON step.id_step = content.step_id
-JOIN student_course ON content.student_course_id = student_course.id_student_course
-WHERE student_course.course_id = 1;
+JOIN course ON content.id_course = course.id_course
+WHERE LOWER(course.title) = LOWER('название курса');

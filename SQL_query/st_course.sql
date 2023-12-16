@@ -1,4 +1,5 @@
-SELECT user.nickname
-FROM user
-JOIN student_course ON user.id_user = student_course.student_id
-WHERE student_course.course_id = 1;
+SELECT course.title
+FROM course
+JOIN student_course ON course.id_course = student_course.course_id
+JOIN user ON student_course.student_id = user.id_user
+WHERE user.nickname = 'ИМЯ СТУДЕНТА';

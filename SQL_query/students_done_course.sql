@@ -1,9 +1,9 @@
-SELECT DISTINCT u.id_user, u.nickname
-FROM user u
-JOIN step_student ss ON u.id_user = ss.user_id
-JOIN content c ON ss.step_id = c.step_id
-JOIN course crs ON c.course_id = crs.id_course
-JOIN status s ON ss.status_id = s.id_status
-WHERE crs.id_course = 1 AND s.status_type = 'done'
-GROUP BY u.id_user, u.nickname
-HAVING COUNT(DISTINCT c.id_content) = (SELECT COUNT(DISTINCT id_step) FROM step WHERE task_id IS NOT NULL AND step.course_id = crs.id_course);
+SELECT user.*
+FROM user
+JOIN student_course ON user.id_user = student_course.student_id
+JOIN content ON student_course.course_id = content.id_course
+JOIN step_student ON content.step_id = step_student.step_id
+WHERE content.title = "название курса"
+  AND step_student.status = 'done'
+GROUP BY user.id_user
+HAVING COUNT(DISTINCT step_student.step_id) = (SELECT COUNT(*) FROM step WHERE task_id IS NOT NULL);
