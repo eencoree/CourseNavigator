@@ -1,0 +1,33 @@
+{% extends 'courses/base.html' %}
+
+{% block title %}
+	Multiple choice task
+{% endblock %}
+
+{% block body %}
+        <div>
+            <label for="{{ form.option1.id_for_label }}">Option 1:</label>
+            {{ form.option1.errors }}
+            {{ form.option1 }}
+        </div>
+        <div>
+            <label for="{{ form.option2.id_for_label }}">Option 2:</label>
+            {{ form.option2.errors }}
+            {{ form.option2 }}
+        </div>
+        <div>
+            <label for="{{ form.option3.id_for_label }}">Option 3:</label>
+            {{ form.option3.errors }}
+            {{ form.option3 }}
+        </div>
+        <div>
+            <label for="{{ form.option4.id_for_label }}">Option 4:</label>
+            {{ form.option4.errors }}
+            {{ form.option4 }}
+        </div>
+        <div>
+            <label for="{{ form.option5.id_for_label }}">Option 5:</label>
+            {{ form.option5.errors }}
+            {{ form.option5 }}
+        </div>
+{% endblock %}

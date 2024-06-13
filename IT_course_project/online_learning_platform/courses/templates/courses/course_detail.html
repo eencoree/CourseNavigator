@@ -1,0 +1,42 @@
+{% extends 'courses/base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ course.title }}
+{% endblock %}
+
+{% block body %}
+    <link rel="stylesheet" href="/static/css/course_background.css">
+
+    <div class="course-background">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+                    <div class="card mt-5">
+                        <div class="card-header bg-primary text-white text-uppercase">
+                            {{ course.title }}
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Description:</h5>
+                            <p class="card-text">{{ course.description }}</p>
+                            <h6 class="card-subtitle mb-2 text-muted">Created by: {{ course.created_by.username }}</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">Steps:</h6>
+                            <ul class="list-group">
+                                {% for step in course.steps.all %}
+                                    <li class="list-group-item">
+                                        <a href="{% url 'courses:step_detail' step_id=step.id %}">{{ step.title }}</a>
+                                    </li>
+                                {% empty %}
+                                    <li class="list-group-item">No steps available for this course.</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{% url 'courses:index' %}" class="btn btn-secondary">Back to all courses</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

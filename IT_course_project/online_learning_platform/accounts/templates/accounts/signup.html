@@ -1,0 +1,23 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}
+    Sign up
+{% endblock %}
+
+{% block body %}
+    <link rel="stylesheet" href="/static/css/signup.css">
+
+    <div class="signup-background">
+        <div class="container">
+            <h2>Sign Up</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Sign Up</button>
+            </form>
+            <p class="login-link">
+                Already have an account? <a href="{% url 'accounts:login' %}">Login</a>
+            </p>
+        </div>
+    </div>
+{% endblock %}

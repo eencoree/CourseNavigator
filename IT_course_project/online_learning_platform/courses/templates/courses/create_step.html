@@ -1,0 +1,32 @@
+{% extends 'courses/base.html' %}
+
+{% block title %}
+    Create Step
+{% endblock %}
+
+{% block body %}
+    <h2>Create Step</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.title.errors }}
+            <div>
+                <label for="{{ form.title.id_for_label }}">Title:</label>
+                {{ form.title }}
+            </div>
+
+            {{ form.lesson.errors }}
+            <div>
+                <label for="{{ form.lesson.id_for_label }}">Lesson:</label>
+                {{ form.lesson }}
+            </div>
+
+            {{ form.course.errors }}
+            <div>
+                <label for="{{ form.course.id_for_label }}">Course:</label>
+                {{ form.course }}
+            </div>
+
+            <button type="submit">Create Step</button>
+    </form>
+    <a href="{% url 'courses:create_course'%}">Back to Create Course</a>
+{% endblock %}

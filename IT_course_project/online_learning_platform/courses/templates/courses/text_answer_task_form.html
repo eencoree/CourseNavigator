@@ -1,0 +1,14 @@
+{% extends 'courses/base.html' %}
+
+{% block title %}
+	Text answer task
+{% endblock %}
+
+{% block body %}
+	{{ form.answer.errors }}
+    <div>
+            <label for="{{ form.option1.id_for_label }}">Answer:</label>
+            {{ form.option1.errors }}
+            {{ form.option1 }}
+    </div>
+{% endblock %}

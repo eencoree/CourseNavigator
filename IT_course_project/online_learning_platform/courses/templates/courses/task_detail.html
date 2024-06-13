@@ -1,0 +1,41 @@
+{% extends 'courses/base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ task.title }}
+{% endblock %}
+
+{% block body %}
+    <link rel="stylesheet" href="/static/css/task.css">
+
+    <div class="task-background">
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            <h2>{{ task.title }}</h2>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text"><strong>Description:</strong> {{ task.description }}</p>
+                            <p class="card-text"><strong>Type:</strong> {{ task.type }}</p>
+
+                            {% if is_choice_task %}
+                                <p class="card-text"><strong>Answer 1:</strong> {{ task.option1 }}</p>
+                                <p class="card-text"><strong>Answer 2:</strong> {{ task.option2 }}</p>
+                                <p class="card-text"><strong>Answer 3:</strong> {{ task.option3 }}</p>
+                                <p class="card-text"><strong>Answer 4:</strong> {{ task.option4 }}</p>
+                                <p class="card-text"><strong>Answer 5:</strong> {{ task.option5 }}</p>
+                            {% else %}
+                                <p class="card-text"><strong>Answer:</strong> {{ task.option1 }}</p>
+                            {% endif %}
+                        </div>
+                        <div class="card-footer text-right">
+                            <a href="{% url 'courses:step_detail' step_id=task.step.id %}" class="btn btn-secondary">Back to step</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

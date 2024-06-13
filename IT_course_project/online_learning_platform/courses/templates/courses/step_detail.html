@@ -1,0 +1,43 @@
+{% extends 'courses/base.html' %}
+
+{% block title %}
+    {{ step.title }}
+{% endblock %}
+
+{% block body %}
+    <link rel="stylesheet" href="/static/css/step.css">
+
+
+    <div class="step-background">
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8"> <!-- Уменьшаем ширину колонки, чтобы текст не был слишком большим -->
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            <h3 class="card-title">{{ step.title }}</h3> <!-- Используем h3 для заголовка -->
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-subtitle mb-2 text-muted">Lesson:</h4> <!-- Используем h4 для подзаголовков -->
+                            <p class="card-text" style="font-size: 16px;">{{ step.lesson }}</p> <!-- Уменьшаем размер шрифта -->
+                            <h5 class="card-subtitle mb-2 text-muted">Tasks:</h5> <!-- Используем h5 для подзаголовков -->
+                            <ul class="list-group">
+                                {% for task in step.tasks.all %}
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        {{ task.title }}
+                                        <a href="{% url 'courses:task_detail' task.id %}" class="btn btn-secondary btn-sm">View Task</a>
+                                    </li>
+                                {% empty %}
+                                    <li class="list-group-item">No tasks available for this step.</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="card-footer text-right">
+                            <a href="{% url 'courses:course_detail' course_id=step.course.id %}" class="btn btn-secondary">Back to course</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

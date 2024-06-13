@@ -1,0 +1,62 @@
+{% extends 'courses/base.html' %}
+{% load static %}
+
+{% block title %}
+    Courses
+{% endblock %}
+
+{% block body %}
+    <link rel="stylesheet" href="/static/css/main_background.css">
+    <link rel="stylesheet" href="/static/css/profile_button.css">
+    <link rel="stylesheet" href="/static/css/buttons.css">
+    <link rel="stylesheet" href="/static/css/create_button.css">
+
+    <div class="main-background">
+        <div class="container my-1">
+            <div class="row align-items-center">
+                <div class="col-md-3">
+                    <div class="btn-group">
+                        {% if user.is_authenticated %}
+                            {% if user.role == 'creator' %}
+                                <a href="{% url 'courses:create_course' %}" class="btn btn-primary bubbly-button">Create Course</a>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h1 class="text-center mb-4" style="color: white;">Courses</h1>
+                </div>
+                <div class="col-md-3 d-flex justify-content-end">
+                    <div class="btn-group" style="margin-top: 50px">
+                        <a href="{% url 'accounts:profile' %}" class="button_profile">Profile</a>
+                        <form method="post" action="{% url 'accounts:logout' %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger glow-on-hover" style="width: 150%;">Logout</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                {% for course in courses %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-header bg-primary text-white text-uppercase">
+                                {{ course.title }}
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ course.description }}</p>
+                                <p class="card-text"><strong>Created by:</strong> {{ course.created_by.username }}</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="{% url 'courses:course_detail' course.id %}" class="btn btn-secondary">View Course</a>
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>No courses available.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'courses/base.html' %}
+
+{% block title %}
+    <h1>Create Task</h1>
+{% endblock %}
+
+{% block body %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.title.errors }}
+        <div>
+            <label for="{{ form.title.id_for_label }}">Title:</label>
+            {{ form.title }}
+        </div>
+
+        {{ form.description.errors }}
+        <div>
+            <label for="{{ form.description.id_for_label }}">Description:</label>
+            {{ form.description }}
+        </div>
+
+        {% if type_id == 1 %}
+            {% include 'courses/single_choice_task_form.html' %}
+        {% elif type_id == 2 %}
+            {% include 'courses/multiple_choice_task_form.html' %}
+        {% elif type_id == 3 %}
+            {% include 'courses/text_answer_task_form.html' %}
+        {% endif %}
+
+        <button type="submit" name="create_task">Create Task</button>
+    </form>
+{% endblock %}

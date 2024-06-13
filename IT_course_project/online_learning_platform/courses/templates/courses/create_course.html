@@ -1,0 +1,15 @@
+{% extends 'courses/base.html' %}
+
+{% block title %}
+    Create Course
+{% endblock %}
+
+{% block body %}
+    <h1>Create Course</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create Course</button>
+    </form>
+    <a href="{% url 'accounts:profile' %}">Back to profile</a>
+{% endblock %}

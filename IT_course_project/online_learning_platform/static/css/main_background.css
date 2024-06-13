@@ -1,0 +1,21 @@
+
+        html, body {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .main-background {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('../main_back2.png');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            margin: 0!important;
+            padding: 0!important;
+        }
+
+        .container.my-1 {
+            margin-top: 0 !important;
+        }

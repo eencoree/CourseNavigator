@@ -1,0 +1,55 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% block title %}
+    Profile
+{% endblock %}
+
+{% block body %}
+    <link rel="stylesheet" href="/static/css/buttons.css">
+    <link rel="stylesheet" href="/static/css/profile.css">
+
+    <div class="profile-background">
+        <div class="profile-content">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <h2 class="text-center mb-4">Profile</h2>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <p class="card-text"><strong>Username:</strong> {{ request.user.username }}</p>
+                                    <p class="card-text"><strong>Email:</strong> {{ request.user.email }}</p>
+                                    <p class="card-text"><strong>Role:</strong> {{ request.user.role }}</p>
+                                </div>
+                                <div class="col-md-3">
+                                    <img src="{% static 'avatar.png' %}" alt="Profile Image" class="img-fluid">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer text-center">
+                            <a href="{% url 'courses:index' %}" class="btn btn-primary mr-2 glow-on-hover" style="line-height: 35px">Main</a>
+                            <form method="post" action="{% url 'accounts:logout' %}" class="d-inline">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger glow-on-hover" style="margin-right: 6px">Logout</button>
+                            </form>
+                            <form id="delete-form" method="post" action="{% url 'accounts:delete_account' %}" class="d-inline">
+                                {% csrf_token %}
+                                <button id="delete-button" type="button" class="btn btn-outline-danger glow-on-hover">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("delete-button").addEventListener("click", function() {
+                if (confirm("Are you sure you want to delete your account?")) {
+                    document.getElementById("delete-form").submit();
+                }
+            });
+        });
+    </script>
+{% endblock %}
+

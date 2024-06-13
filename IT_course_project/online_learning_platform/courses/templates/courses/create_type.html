@@ -1,0 +1,15 @@
+{% extends 'courses/base.html' %}
+
+{% block title %}
+    <h1>Choose Task Type</h1>
+{% endblock %}
+
+{% block body %}
+    <h2>Select Task Type</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Next: Create Task</button>
+    </form>
+    <a href="{% url 'courses:create_step' course_id%}">Add Another Step</a>
+{% endblock %}
