@@ -1,18 +1,25 @@
-# Django #
+# Django
 *.log
 *.pot
 *.pyc
 __pycache__/
 local_settings.py
 
-# Virtual Environment #
+# Virtual Environment
 venv/
 env/
 .env
 
-# Database #
+# SQLite database
 db.sqlite3
 
-# Static and media files #
+# Static and media files
 staticfiles/
 media/
+
+# PyCharm
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
